@@ -4,7 +4,7 @@ A plugin for PBP that gets data from Rezi (but this time made using Rust!)
 
 ## How to use it:
 
-Command Line: rezi-pbp-rs "query" "cache location"
+Command Line: `rezi-pbp-rs "query" "cache location"`
 
 PBP: Install the plugin and select it on the search page
 
