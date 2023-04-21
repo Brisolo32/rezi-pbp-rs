@@ -1,0 +1,36 @@
+name: Rust
+
+on:
+  push:
+    branches: [ "main" ]
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build_app:
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest, macos-latest]
+        files: [rezi-pbp-rs-linux, rezi-pbp-rs-windows, rezi-pbp-rs-macos]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@master
+      - name: Compile plugin
+        uses: rust-build/rust-build.action@v1.4.3
+      - name: Upload artifact
+        uses: actions/upload-artifact@v3
+        with:
+          name: ${{ matrix.files }}
+          path: |
+            ${{ steps.compile.outputs.BUILT_ARCHIVE }}
+            ${{ steps.compile.outputs.BUILT_CHECKSUM }}
+      - name: Create new release
+        uses: ncipollo/release-action@v1.12.0
+        with:
+          commit: main
+          tag: plugin
+          artifacts: ${{ matrix.files }}
+          body: Download the file to get the most recent plugin!
+            
+        
