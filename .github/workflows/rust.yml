@@ -11,9 +11,8 @@ jobs:
   build_app:
     strategy:
       matrix:
-        os: [ubuntu-latest, windows-latest, macos-latest]
         files: [rezi-pbp-rs-linux, rezi-pbp-rs-windows, rezi-pbp-rs-macos]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@master
       - name: Compile plugin
