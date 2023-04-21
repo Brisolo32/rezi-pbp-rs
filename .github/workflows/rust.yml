@@ -70,7 +70,7 @@ jobs:
           override: true
 
       - name: Build for mac
-        run: cargo build --all --release && strip target/release/rezi-pbp-rs && mv target/release/PROJECT_NAME target/release/rezi-pbp-rs_darwin
+        run: cargo build --all --release && strip target/release/rezi-pbp-rs && mv target/release/rezi-pbp-rs target/release/rezi-pbp-rs_darwin
 
       - name: Release
         uses: softprops/action-gh-release@v1
